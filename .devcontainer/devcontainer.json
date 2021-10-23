@@ -39,6 +39,7 @@
     "dbaeumer.vscode-eslint",
     "nepaul.editorconfiggenerator",
     "vscode-icons-team.vscode-icons",
-    "kisstkondoros.vscode-codemetrics"
+    "kisstkondoros.vscode-codemetrics",
+    "leetcode.vscode-leetcode"
   ]
 }
