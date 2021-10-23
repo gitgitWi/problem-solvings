@@ -12,7 +12,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "lint": "eslint --fix"
+    "lint": "eslint --fix",
+    "serve": "nodemon --exec ts-node"
   },
   "devDependencies": {
     "@types/node": "^16.10.3",
