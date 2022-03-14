@@ -1,4 +1,10 @@
 node_modules/
+
 .private/
+
+# yarn - none-zeroconfig
 yarn-error.log
 yarn.lock
+.yarn/
+.yarnrc.yml
+.pnp.cjs

@@ -2,7 +2,7 @@
   "name": "problem-solvings",
   "version": "1.0.0",
   "engines": {
-    "node": ">=14"
+    "node": ">=16"
   },
   "repository": {
     "type": "git",
@@ -25,5 +25,6 @@
     "nodemon": "^2.0.13",
     "ts-node": "^10.2.1",
     "typescript": "^4.4.3"
-  }
+  },
+  "packageManager": "yarn@3.2.0"
 }
