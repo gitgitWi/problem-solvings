@@ -39,3 +39,5 @@ function search(nums: number[], target: number): number {
   console.log(ans);
   console.assert(ans === output);
 });
+
+export {};
