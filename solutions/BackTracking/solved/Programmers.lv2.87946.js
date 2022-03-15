@@ -72,3 +72,5 @@ qq.forEach(([k, d, ans]) => {
     is: answer === ans,
   });
 });
+
+export {};
