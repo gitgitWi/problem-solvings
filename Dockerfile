@@ -23,6 +23,8 @@ RUN git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUS
 COPY ./.setup/.zshrc /root/.zshrc
 # COPY ./.setup/nodejs.sh /workspaces/nodejs.sh
 
+WORKDIR /workspaces/problem-solvings
+
 # yarn berry
 RUN yarn set version berry
 RUN yarn

@@ -2,14 +2,13 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.202.5/containers/docker-existing-dockerfile
 {
   "name": "Existing Dockerfile",
-  "runArgs": ["--init"],
-
+  "runArgs": [
+    "--init"
+  ],
   // Sets the run context to one level up instead of the .devcontainer folder.
   "context": "..",
-
   // Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
   "dockerFile": "../Dockerfile",
-
   // Set *default* container specific settings.json values on container create.
   "settings": {
     "editor.formatOnSave": true,
@@ -17,7 +16,6 @@
     "files.autoSave": "onFocusChange",
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-
   // Add the IDs of extensions you want installed when the container is created.
   "extensions": [
     "shd101wyy.markdown-preview-enhanced",
@@ -40,6 +38,8 @@
     "nepaul.editorconfiggenerator",
     "vscode-icons-team.vscode-icons",
     "kisstkondoros.vscode-codemetrics",
-    "leetcode.vscode-leetcode"
+    "leetcode.vscode-leetcode",
+    "WallabyJs.quokka-vscode",
+    "arcanis.vscode-zipfs"
   ]
 }
