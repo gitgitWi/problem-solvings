@@ -1,37 +1,17 @@
-FROM node:lts-slim
+FROM node:lts-alpine
 
-RUN apt update
-RUN apt-get update
-
-RUN apt-get install locales zsh curl wget unzip sudo git -y
-# RUN apt-get install dirmngr gpg gawk -y
-RUN apt autoremove -y
-
-RUN rm -rf /var/lib/apt/lists/* && localedef -i ko_KR -c -f UTF-8 -A /usr/share/locale/locale.alias ko_KR.UTF-8
-ENV LANG ko_KR.UTF-8
-ENV TZ="Asia/Seoul"
+RUN apk update
+RUN apk upgrade
+RUN apk add build-base zsh curl wget git util-linux libuser
 
 RUN git config --global init.defaultBranch main
 RUN git config --global user.name "gitgitWi"
 RUN git config --global user.email "wiii@kakao.com"
+RUN git config --global core.eol lf
+RUN git config --global core.autocrlf false
 
 # oh-my-zsh
 RUN zsh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 RUN git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 RUN git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-
-COPY ./.setup/.zshrc /root/.zshrc
-# COPY ./.setup/nodejs.sh /workspaces/nodejs.sh
-
-WORKDIR /workspaces/problem-solvings
-
-# yarn berry
-RUN yarn set version berry
-RUN yarn
-RUN yarn dlx @yarnpkg/sdks vscode
-
-# install asdf
-# RUN git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf
-# ONBUILD RUN echo '. $HOME/.asdf/asdf.sh' >> $HOME/.zshrc
-
-RUN chsh -s /usr/bin/zsh
+RUN wget "https://gist.githubusercontent.com/gitgitWi/93f3583109ac09076fbef6b64c76536f/raw/27a6dee2807396816f9b292ccf3f69c89155b587/.zshrc" -O $HOME/.zshrc
