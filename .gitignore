@@ -4,7 +4,8 @@ node_modules/
 
 # yarn - none-zeroconfig
 yarn-error.log
-yarn.lock
 .yarn/
 .yarnrc.yml
 .pnp.cjs
+
+.DS_Store
