@@ -2,6 +2,7 @@
   "recommendations": [
     "arcanis.vscode-zipfs",
     "dbaeumer.vscode-eslint",
-    "WallabyJs.quokka-vscode"
+    "WallabyJs.quokka-vscode",
+    "esbenp.prettier-vscode"
   ]
 }
