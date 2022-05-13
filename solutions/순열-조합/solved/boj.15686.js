@@ -29,10 +29,8 @@ const solution = ([nm, ..._grid]) => {
   // M개 고르기
   /** @type {number[][][]} */
   const targets = [];
-  const sizes = chicks.length;
-  for (let start = 0; start < sizes; start++) {
-    getPermutation(start, [chicks[start]], M, [start], chicks, targets);
-  }
+  combination(-1, [], M, chicks, targets);
+
   // console.log(targets);
 
   const { abs, min } = Math;
@@ -55,36 +53,19 @@ const solution = ([nm, ..._grid]) => {
 };
 
 /**
- * @param {number} currentIdx
- * @param {number[][]} currentArray
+ * @param {number} start
+ * @param {number[]} selectedIds
  * @param {number} size
- * @param {number[]} visited
- * @param {number[][]} origin
+ * @param {number[][]} chicks
  * @param {number[][][]} targets
  */
-const getPermutation = (
-  currentIdx,
-  currentArray,
-  size,
-  visited,
-  origin,
-  targets
-) => {
-  if (currentArray.length === size) {
-    targets.push(currentArray);
+const combination = (start, selectedIds, size, chicks, targets) => {
+  if (selectedIds.length === size) {
+    targets.push(chicks.filter((d, i) => selectedIds.includes(i)));
   }
 
-  const nextVisited = visited.concat([currentIdx]);
-
-  for (let nextIdx = currentIdx + 1; nextIdx < origin.length; nextIdx++) {
-    getPermutation(
-      nextIdx,
-      currentArray.concat([origin[nextIdx]]),
-      size,
-      nextVisited,
-      origin,
-      targets
-    );
+  for (let nextId = start + 1; nextId < chicks.length; nextId++) {
+    combination(nextId, selectedIds.concat([nextId]), size, chicks, targets);
   }
 };
 
@@ -96,6 +77,7 @@ const main = () => {
   //   .split("\n");
 
   // console.log(solution(input));
+
   [
     ["5 3", "0 0 1 0 0", "0 0 2 0 1", "0 1 2 0 0", "0 0 1 0 0", "0 0 0 0 2"],
     ["5 2", "0 2 0 1 0", "1 0 1 0 0", "0 0 0 0 0", "2 0 0 1 1", "2 2 0 1 2"],
