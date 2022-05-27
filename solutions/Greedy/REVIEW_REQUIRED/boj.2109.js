@@ -10,8 +10,87 @@
  * @returns  {number}
  */
 const solution = ([_, ...pricesWithDue]) => {
-  /** @type {number[]} */
-  const moneys = [];
+  class Node {
+    /** @type {number} */
+    value;
+    /** @type {Node | undefined} */
+    prevNode;
+    /** @type {Node | undefined} */
+    nextNode = undefined;
+    /**
+     * @param {number} value
+     */
+    constructor(value) {
+      this.value = value;
+    }
+  }
+
+  class PriceAscHeap {
+    /** @type {Node | undefined} */
+    head = undefined;
+    size = 0;
+
+    getSize() {
+      return this.size;
+    }
+
+    removeTop() {
+      if (!this.head || this.size === 0) return;
+      this.head = this.head.nextNode;
+      this.size -= 1;
+    }
+
+    /**
+     * @param {Node} node
+     */
+    appendNode(node) {
+      this.size += 1;
+
+      if (!this.head) {
+        this.head = node;
+        return;
+      }
+
+      if (this.head.value > node.value) {
+        node.nextNode = this.head;
+        this.head.prevNode = node;
+        this.head = node;
+        return;
+      }
+
+      /** @type { Node | undefined }  */
+      let pointNode = this.head;
+      while (pointNode?.nextNode && pointNode.nextNode.value <= node.value) {
+        pointNode = pointNode.nextNode;
+      }
+
+      node.nextNode = pointNode.nextNode;
+      node.prevNode = pointNode;
+      pointNode.nextNode = node;
+    }
+
+    getTotalValues() {
+      let total = 0;
+      let pointNode = this.head;
+      while (pointNode) {
+        total += pointNode.value;
+        pointNode = pointNode.nextNode;
+      }
+      return total;
+    }
+
+    traverse() {
+      const nodes = [];
+      let pointNode = this.head;
+      while (pointNode) {
+        nodes.push(pointNode.value);
+        pointNode = pointNode.nextNode;
+      }
+      console.log(nodes);
+    }
+  }
+
+  const pq = new PriceAscHeap();
 
   pricesWithDue
     .map((line) => line.split(" ").map(Number).reverse())
@@ -20,12 +99,11 @@ const solution = ([_, ...pricesWithDue]) => {
       return diff === 0 ? b[1] - a[1] : diff;
     })
     .forEach(([due, price]) => {
-      moneys.push(price);
-      moneys.sort((a, b) => b - a);
-      if (moneys.length > due) moneys.pop();
+      pq.appendNode(new Node(price));
+      if (pq.getSize() > due) pq.removeTop();
     });
 
-  return moneys.reduce((acc, cur) => acc + cur, 0);
+  return pq.getTotalValues();
 };
 
 const main = () => {
