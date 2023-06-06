@@ -1,6 +1,5 @@
 {
   "name": "problem-solvings",
-  "version": "1.0.0",
   "engines": {
     "node": ">=16"
   },
@@ -12,8 +11,9 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "lint": "eslint --fix",
-    "serve": "nodemon --exec ts-node"
+    "serve": "tsx watch ",
+    "preinstall": "corepack enable pnpm && npx only-allow pnpm",
+    "lint": "eslint --fix"
   },
   "devDependencies": {
     "@types/node": "^20.2.5",
@@ -22,9 +22,8 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "nodemon": "^2.0.22",
     "prettier": "^2.8.8",
-    "ts-node": "^10.9.1",
+    "tsx": "^3.12.7",
     "typescript": "^5.1.3"
   }
 }
