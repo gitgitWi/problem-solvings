@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ESNext",
     "outDir": "./dist",
-    "module": "CommonJS",
+    "module": "ESNext",
     "allowJs": true,
     "checkJs": true,
     "sourceMap": false,
@@ -14,6 +14,7 @@
     "useUnknownInCatchVariables": true,
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
+    "isolatedModules": true
   },
   "include": ["./solutions", "./public", "./.private"],
 }
