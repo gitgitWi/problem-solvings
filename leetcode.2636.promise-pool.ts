@@ -29,3 +29,16 @@ async function promisePool(functions: F[], workers: number): Promise<any> {
     Array.from({ length: workers }, (_, i) => i).map((id) => work(id))
   );
 }
+
+/** 두번째 답 - 다른 답안/해설 참고 */
+async function promisePool2(funcs: F[], poolSize: number): Promise<any> {
+  const next = async () => {
+    if (funcs.length === 0) return;
+    await funcs.shift()!();
+    return await next();
+  };
+
+  const workers = Array(poolSize).fill(undefined);
+
+  return Promise.all(workers.map(next));
+}
