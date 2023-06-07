@@ -16,5 +16,5 @@
     "skipLibCheck": true,
     "isolatedModules": true
   },
-  "include": ["./solutions", "./public", "./.private"],
+  "include": ["./solutions", "./solving", "./public", "./.private"],
 }
