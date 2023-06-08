@@ -1,8 +1,7 @@
 {
   "recommendations": [
-    "arcanis.vscode-zipfs",
     "dbaeumer.vscode-eslint",
-    "WallabyJs.quokka-vscode",
+    "wallabyjs.quokka-vscode",
     "esbenp.prettier-vscode"
   ]
 }
