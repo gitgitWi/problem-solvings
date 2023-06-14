@@ -3,52 +3,52 @@
  * {@link https://leetcode.com/problems/max-increase-to-keep-city-skyline/}
  */
 function maxIncreaseKeepingSkyline(grid: number[][]): number {
-  const getGridSum = (_grid: number[][]) => {
-    let sum = 0;
-    for (const row of _grid) {
-      for (const val of row) {
-        sum += val;
-      }
-    }
-    return sum;
-  };
-
-  const { min } = Math;
-  const result = grid.map((row) => row.slice());
   const SIZE = grid.length;
+  const { min } = Math;
 
+  const colMaxHeights: number[] = Array(SIZE).fill(0);
+  const rowMaxHeights: number[] = Array(SIZE).fill(0);
   for (let rowId = 0; rowId < SIZE; rowId++) {
     for (let colId = 0; colId < SIZE; colId++) {
       const curHeight = grid[rowId][colId];
-
-      let rowMaxHeight = curHeight;
-      for (let _rowId = 0; _rowId < SIZE; _rowId++) {
-        const _curHeight = grid[_rowId][colId];
-        if (_curHeight > rowMaxHeight) rowMaxHeight = _curHeight;
-      }
-
-      let colMaxHeight = curHeight;
-      for (let _colId = 0; _colId < SIZE; _colId++) {
-        const _curHeight = grid[rowId][_colId];
-        if (_curHeight > colMaxHeight) colMaxHeight = _curHeight;
-      }
-
-      result[rowId][colId] = min(colMaxHeight, rowMaxHeight);
+      if (curHeight > colMaxHeights[colId]) colMaxHeights[colId] = curHeight;
+      if (curHeight > rowMaxHeights[rowId]) rowMaxHeights[rowId] = curHeight;
     }
   }
 
-  return getGridSum(result) - getGridSum(grid);
+  let diffSum = 0;
+  for (let rowId = 0; rowId < SIZE; rowId++) {
+    for (let colId = 0; colId < SIZE; colId++) {
+      const height = min(rowMaxHeights[rowId], colMaxHeights[colId]);
+      const diff = height - grid[rowId][colId];
+      diffSum += diff;
+    }
+  }
+
+  return diffSum;
 }
 
-const input = [
-  [3, 0, 8, 4],
-  [2, 4, 5, 7],
-  [9, 2, 6, 3],
-  [0, 3, 1, 0],
+/** TEST */
+const testCases = [
+  {
+    input: [
+      [3, 0, 8, 4],
+      [2, 4, 5, 7],
+      [9, 2, 6, 3],
+      [0, 3, 1, 0],
+    ],
+    output: 35,
+  },
 ];
-const output = 35;
 
-const answer = maxIncreaseKeepingSkyline(input);
-console.debug({ answer, isOK: answer === output });
+testCases.forEach(({ input, output }) => {
+  const answer = maxIncreaseKeepingSkyline(input);
+  console.assert(
+    answer === output,
+    '\nanswer: \x1b[91m%d\x1b[0m\nexpected: \x1b[32m%d\x1b[0m\n',
+    answer,
+    output
+  );
+});
 
 export {};
