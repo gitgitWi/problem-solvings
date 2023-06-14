@@ -14,7 +14,11 @@
     "useUnknownInCatchVariables": true,
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "baseUrl": ".",
+    "paths": {
+      "@utils/*": ["./src/utils/*"]
+    }
   },
-  "include": ["./solutions", "./solving", "./public", "./.private"],
+  "include": ["./solutions", "./solving", "./public", "./.private", "./src"],
 }
