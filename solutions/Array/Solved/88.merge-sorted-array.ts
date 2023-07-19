@@ -83,3 +83,10 @@ function merge(nums1: number[], m: number, nums2: number[], n: number): void {
     `\nresult:  ${result}\nexpected:  ${expected}`,
   );
 });
+
+/**
+ * Note.
+ * - 요구사항이 Mutable 방식(원본 배열을 직접 수정) 사용하는 것이기 때문에
+ * - `Array.prototype.splice()`를 사용하면 좀더 간편하다
+ * - 실제로는 거의 사용하지 않다보니 좀 생소한 메서드..
+ */
