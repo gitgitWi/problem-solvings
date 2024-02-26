@@ -1,29 +1,22 @@
 {
   "name": "problem-solvings",
-  "engines": {
-    "node": ">=16"
-  },
+  "description": "",
+  "author": "gitgitWi",
+  "private": true,
+  "type": "module",
+  "main": "index.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/gitgitWi/problem-solvings"
   },
-  "author": "gitgitWi <wiii@kakao.com>",
-  "license": "MIT",
-  "private": true,
   "scripts": {
-    "serve": "tsx watch ",
-    "preinstall": "corepack enable pnpm && npx only-allow pnpm",
-    "lint": "eslint --fix"
+    "serve": "tsx --watch index.ts",
+    "start": "tsx index.ts"
   },
-  "devDependencies": {
-    "@types/node": "^20.4.2",
-    "@typescript-eslint/eslint-plugin": "^4.33.0",
-    "eslint": "^8.45.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "prettier": "^3.0.0",
-    "tsx": "^3.12.7",
-    "typescript": "^5.1.6"
+  "dependencies": {
+    "@biomejs/biome": "^1.5.3",
+    "@types/node": "^20.10.0",
+    "tsx": "^4.7.1",
+    "typescript": "^5.3.2"
   }
 }
