@@ -18,9 +18,10 @@
     "baseUrl": ".",
     "paths": {
       "@problems/*": ["./problems/*"],
+      "@utils/*": ["./utils/*"],
       "@/*": ["./*"]
     }
   },
-  "include": ["index.ts", "problems"],
+  "include": ["index.ts", "problems", "utils"],
   "exclude": ["dist"]
 }
