@@ -1,12 +1,20 @@
 {
-  "search.exclude": {
-    "**/.yarn": true,
-    "**/.pnp.*": true
-  },
+  "search.exclude": {},
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "cSpell.words": ["leetcode", "Nums"],
-  "prettier.prettierPath": "",
-  "npm.packageManager": "pnpm",
-  "eslint.packageManager": "pnpm"
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "biomejs.biome",
+  "editor.formatOnPaste": true,
+  "notebook.formatOnSave.enabled": true,
+  "editor.tabSize": 2,
+  "editor.tabCompletion": "on",
+  "editor.minimap.autohide": true,
+  "javascript.inlayHints.parameterTypes.enabled": true,
+  "javascript.inlayHints.parameterNames.enabled": "literals",
+  "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "typescript.inlayHints.parameterNames.enabled": "literals",
+  "typescript.inlayHints.parameterTypes.enabled": true,
+  "files.autoSave": "onFocusChange",
+  "workbench.sideBar.location": "right",
+  "cSpell.words": ["leetcode", "Nums"]
 }
