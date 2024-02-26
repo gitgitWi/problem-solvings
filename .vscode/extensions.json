@@ -1,7 +1,9 @@
 {
   "recommendations": [
-    "dbaeumer.vscode-eslint",
     "wallabyjs.quokka-vscode",
-    "esbenp.prettier-vscode"
+    "biomejs.biome",
+    "oven.bun-vscode",
+    "streetsidesoftware.code-spell-checker",
+    "igorsbitnev.error-gutters"
   ]
 }
