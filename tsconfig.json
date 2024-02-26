@@ -17,8 +17,10 @@
     "isolatedModules": true,
     "baseUrl": ".",
     "paths": {
-      "@utils/*": ["./src/utils/*"]
+      "@problems/*": ["./problems/*"],
+      "@/*": ["./*"]
     }
   },
-  "include": ["./solutions", "./solving", "./public", "./.private", "./src"],
+  "include": ["index.ts", "problems"],
+  "exclude": ["dist"]
 }
