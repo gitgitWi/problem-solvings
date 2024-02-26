@@ -5,6 +5,7 @@
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "biomejs.biome",
   "editor.formatOnPaste": true,
+  "scm.defaultViewMode": "tree",
   "notebook.formatOnSave.enabled": true,
   "editor.tabSize": 2,
   "editor.tabCompletion": "on",
@@ -16,5 +17,5 @@
   "typescript.inlayHints.parameterTypes.enabled": true,
   "files.autoSave": "onFocusChange",
   "workbench.sideBar.location": "right",
-  "cSpell.words": ["leetcode", "Nums"]
+  "cSpell.words": ["biomejs", "leetcode", "Nums"]
 }
