@@ -3,6 +3,9 @@
  * LeetCode 98. Validate Binary Search Tree
  *
  * @see {@link https://leetcode.com/problems/validate-binary-search-tree/}
+ *
+ * @todo
+ * - 처음부터 접근 잘못해서 계속 헤맨 듯
  */
 
 interface TreeNode {
@@ -11,28 +14,20 @@ interface TreeNode {
   right: TreeNode | null;
 }
 
-const isValidBST = (root: TreeNode): boolean => {
-  const hasLeft = root.left !== null;
-  const hasRight = root.right !== null;
+function isValidBST(root: TreeNode): boolean {
+  let prevNode: TreeNode | null = null;
 
-  if (hasLeft) {
-    const isLeftValid = root.left.val < root.val && isValidBST(root.left);
-    if (!isLeftValid) return false;
-  }
+  const traverse = (node: TreeNode | null): boolean => {
+    if (node === null) return true;
+    if (!traverse(node.left)) return false;
+    if (prevNode !== null && node.val <= prevNode.val) return false;
+    prevNode = node;
+    return traverse(node.right);
+  };
 
-  if (hasRight) {
-    const isRightValid = root.right.val > root.val && isValidBST(root.right);
-    if (!isRightValid) return false;
-  }
-
-  return true;
-};
-
-const testCases = [
-  //
-];
+  return traverse(root);
+}
 
 export const validateBinarySearchTree = {
   solution: isValidBST,
-  testCases,
 };
