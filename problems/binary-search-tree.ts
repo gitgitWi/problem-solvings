@@ -1,1 +1,1 @@
-export { validateBinarySearchTree } from './leetcode/2-medium/98.validate-binary-search-tree';
+export { validateBinarySearchTree } from './leetcode/need-review/98.validate-binary-search-tree';
