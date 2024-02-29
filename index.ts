@@ -1,7 +1,7 @@
-import { stockPrices } from '@problems/stack-queue';
+import { splitTheArray } from '@problems/leetcode/unsolved/3046';
 
-stockPrices.testCases.forEach(({ input, answer }) => {
-  const result = stockPrices.solution(input);
+splitTheArray.testCases.forEach(({ input, answer }) => {
+  const result = splitTheArray.solution(input);
 
   console.log(
     `${JSON.stringify(result) === JSON.stringify(answer) ? 'PASS' : 'FAIL'}\n`,
