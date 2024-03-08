@@ -11,10 +11,12 @@ const solution = (maps) => {
   let shortest = Number.MAX_SAFE_INTEGER;
 
   /**
-   *
-   * @param {{row: number, col: number,length:number }} param0
+   * @param {number} row
+   * @param {number} col
+   * @param {number} length
+   * @returns
    */
-  const traverse = ({ row, col, length }) => {
+  const traverse = (row, col, length) => {
     // 방문 처리
     maps[row][col] = 0;
 
@@ -24,36 +26,36 @@ const solution = (maps) => {
       return;
     }
 
-    const nextTop = row + 1;
-    const nextBottom = row - 1;
+    const nextBottom = row + 1;
+    const nextTop = row - 1;
     const nextRight = col + 1;
     const nextLeft = col - 1;
     const nextLength = length + 1;
 
     // 상하좌우 탐색
-    if (nextTop < rowLimit && maps[nextTop][col] === 1) {
-      traverse({ row: nextTop, col, length: nextLength });
-      // 방문처리 취소
-      maps[nextTop][col] = 1;
-    }
-    if (nextBottom >= 0 && maps[nextBottom][col] === 1) {
-      traverse({ row: nextBottom, col, length: nextLength });
+    if (nextBottom < rowLimit && maps[nextBottom][col] === 1) {
+      traverse(nextBottom, col, nextLength);
       // 방문처리 취소
       maps[nextBottom][col] = 1;
     }
+    if (nextTop >= 0 && maps[nextTop][col] === 1) {
+      traverse(nextTop, col, nextLength);
+      // 방문처리 취소
+      maps[nextTop][col] = 1;
+    }
     if (nextRight < colLimit && maps[row][nextRight] === 1) {
-      traverse({ row, col: nextRight, length: nextLength });
+      traverse(row, nextRight, nextLength);
       // 방문처리 취소
       maps[row][nextRight] = 1;
     }
     if (nextLeft >= 0 && maps[row][nextLeft] === 1) {
-      traverse({ row, col: nextLeft, length: nextLength });
+      traverse(row, nextLeft, nextLength);
       // 방문처리 취소
       maps[row][nextLeft] = 1;
     }
   };
 
-  traverse({ row: 0, col: 0, length: 1 });
+  traverse(0, 0, 1);
 
   return shortest === Number.MAX_SAFE_INTEGER ? -1 : shortest;
 };
