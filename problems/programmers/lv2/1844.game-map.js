@@ -6,8 +6,8 @@
  * @returns {number}
  */
 const solution = (maps) => {
-  const rowLimit = maps.length;
-  const colLimit = maps[0].length;
+  const ROW_LIMIT = maps.length;
+  const COL_LIMIT = maps[0].length;
   let shortest = Number.MAX_SAFE_INTEGER;
 
   class Position {
@@ -33,11 +33,11 @@ const solution = (maps) => {
   /**
    * @type {Position[]}
    */
-  const stacks = [];
-  stacks.push(new Position(0, 0, new Set()));
+  const queue = [];
+  queue.push(new Position(0, 0, new Set()));
 
-  while (stacks.length > 0) {
-    const current = stacks.pop();
+  while (queue.length > 0) {
+    const current = queue.shift();
     if (!current) break;
 
     const { row, col, visited } = current;
@@ -46,8 +46,11 @@ const solution = (maps) => {
     const nextVisited = new Set(visited);
     nextVisited.add(`${row}-${col}`);
 
+    // 이미 최단 거리 이상인 경우 스킵
+    if (nextVisited.size >= shortest) continue;
+
     // 목표지점 도달시 shortest 업데이트
-    if (row === rowLimit - 1 && col === colLimit - 1) {
+    if (row === ROW_LIMIT - 1 && col === COL_LIMIT - 1) {
       if (nextVisited.size < shortest) shortest = nextVisited.size;
       continue;
     }
@@ -59,32 +62,32 @@ const solution = (maps) => {
 
     // 상하좌우 탐색
     if (
-      nextBottom < rowLimit &&
+      nextBottom < ROW_LIMIT &&
       maps[nextBottom][col] === 1 &&
       !visited.has(`${nextBottom}-${col}`)
     ) {
-      stacks.push(new Position(nextBottom, col, nextVisited));
+      queue.push(new Position(nextBottom, col, nextVisited));
     }
     if (
       nextTop >= 0 &&
       maps[nextTop][col] === 1 &&
       !visited.has(`${nextTop}-${col}`)
     ) {
-      stacks.push(new Position(nextTop, col, nextVisited));
+      queue.push(new Position(nextTop, col, nextVisited));
     }
     if (
-      nextRight < colLimit &&
+      nextRight < COL_LIMIT &&
       maps[row][nextRight] === 1 &&
       !visited.has(`${row}-${nextRight}`)
     ) {
-      stacks.push(new Position(row, nextRight, nextVisited));
+      queue.push(new Position(row, nextRight, nextVisited));
     }
     if (
       nextLeft >= 0 &&
       maps[row][nextLeft] === 1 &&
       !visited.has(`${row}-${nextLeft}`)
     ) {
-      stacks.push(new Position(row, nextLeft, nextVisited));
+      queue.push(new Position(row, nextLeft, nextVisited));
     }
   }
 
