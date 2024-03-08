@@ -10,52 +10,83 @@ const solution = (maps) => {
   const colLimit = maps[0].length;
   let shortest = Number.MAX_SAFE_INTEGER;
 
-  /**
-   * @param {number} row
-   * @param {number} col
-   * @param {number} length
-   * @returns
-   */
-  const traverse = (row, col, length) => {
-    // 방문 처리
-    maps[row][col] = 0;
+  class Position {
+    /** @type {number} */
+    row;
+    /** @type {number} */
+    col;
+    /** @type {Set<string>} */
+    visited;
 
-    // 상대방 진영 도달시 shortest 업데이트
+    /**
+     * @param {number} row
+     * @param {number} col
+     * @param {Set<string>} visited
+     */
+    constructor(row, col, visited) {
+      this.row = row;
+      this.col = col;
+      this.visited = visited;
+    }
+  }
+
+  /**
+   * @type {Position[]}
+   */
+  const stacks = [];
+  stacks.push(new Position(0, 0, new Set()));
+
+  while (stacks.length > 0) {
+    const current = stacks.pop();
+    if (!current) break;
+
+    const { row, col, visited } = current;
+
+    // 방문 처리
+    const nextVisited = new Set(visited);
+    nextVisited.add(`${row}-${col}`);
+
+    // 목표지점 도달시 shortest 업데이트
     if (row === rowLimit - 1 && col === colLimit - 1) {
-      if (length < shortest) shortest = length;
-      return;
+      if (nextVisited.size < shortest) shortest = nextVisited.size;
+      continue;
     }
 
     const nextBottom = row + 1;
     const nextTop = row - 1;
     const nextRight = col + 1;
     const nextLeft = col - 1;
-    const nextLength = length + 1;
 
     // 상하좌우 탐색
-    if (nextBottom < rowLimit && maps[nextBottom][col] === 1) {
-      traverse(nextBottom, col, nextLength);
-      // 방문처리 취소
-      maps[nextBottom][col] = 1;
+    if (
+      nextBottom < rowLimit &&
+      maps[nextBottom][col] === 1 &&
+      !visited.has(`${nextBottom}-${col}`)
+    ) {
+      stacks.push(new Position(nextBottom, col, nextVisited));
     }
-    if (nextTop >= 0 && maps[nextTop][col] === 1) {
-      traverse(nextTop, col, nextLength);
-      // 방문처리 취소
-      maps[nextTop][col] = 1;
+    if (
+      nextTop >= 0 &&
+      maps[nextTop][col] === 1 &&
+      !visited.has(`${nextTop}-${col}`)
+    ) {
+      stacks.push(new Position(nextTop, col, nextVisited));
     }
-    if (nextRight < colLimit && maps[row][nextRight] === 1) {
-      traverse(row, nextRight, nextLength);
-      // 방문처리 취소
-      maps[row][nextRight] = 1;
+    if (
+      nextRight < colLimit &&
+      maps[row][nextRight] === 1 &&
+      !visited.has(`${row}-${nextRight}`)
+    ) {
+      stacks.push(new Position(row, nextRight, nextVisited));
     }
-    if (nextLeft >= 0 && maps[row][nextLeft] === 1) {
-      traverse(row, nextLeft, nextLength);
-      // 방문처리 취소
-      maps[row][nextLeft] = 1;
+    if (
+      nextLeft >= 0 &&
+      maps[row][nextLeft] === 1 &&
+      !visited.has(`${row}-${nextLeft}`)
+    ) {
+      stacks.push(new Position(row, nextLeft, nextVisited));
     }
-  };
-
-  traverse(0, 0, 1);
+  }
 
   return shortest === Number.MAX_SAFE_INTEGER ? -1 : shortest;
 };
