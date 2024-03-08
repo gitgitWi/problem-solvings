@@ -1,7 +1,7 @@
-import { splitTheArray } from '@problems/leetcode/unsolved/3046';
+import { shortestRouteInGameMap } from '@problems/dfs-bfs';
 
-splitTheArray.testCases.forEach(({ input, answer }) => {
-  const result = splitTheArray.solution(input);
+shortestRouteInGameMap.testCases.forEach(({ input, answer }) => {
+  const result = shortestRouteInGameMap.solution(input);
 
   console.log(
     `${JSON.stringify(result) === JSON.stringify(answer) ? 'PASS' : 'FAIL'}\n`,
