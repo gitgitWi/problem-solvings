@@ -20,7 +20,8 @@
       "@problems/*": ["./problems/*"],
       "@utils/*": ["./utils/*"],
       "@/*": ["./*"]
-    }
+    },
+    "types": ["vitest/globals"]
   },
   "include": ["index.ts", "problems", "utils"],
   "exclude": ["dist"]
