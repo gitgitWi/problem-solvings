@@ -15,7 +15,7 @@ test('42577. 전화번호 목록', () => {
 });
 
 function solution(phoneBook: string[]): boolean {
-  phoneBook.sort((a, b) => a.localeCompare(b));
+  phoneBook.sort();
   for (let id = 1; id < phoneBook.length; id++) {
     if (phoneBook[id].startsWith(phoneBook[id - 1])) return false;
   }
