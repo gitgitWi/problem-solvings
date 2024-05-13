@@ -3,6 +3,7 @@
     "target": "ESNext",
     "outDir": "./dist",
     "module": "ESNext",
+    "moduleResolution": "Bundler",
     "allowJs": true,
     "checkJs": true,
     "sourceMap": false,
