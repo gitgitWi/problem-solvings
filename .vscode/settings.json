@@ -30,5 +30,7 @@
   "typescript.inlayHints.parameterTypes.enabled": true,
   "files.autoSave": "onFocusChange",
   "workbench.sideBar.location": "right",
-  "cSpell.words": ["biomejs", "leetcode", "Nums"]
+  "cSpell.words": ["biomejs", "leetcode", "Nums"],
+  "IDX.aI.enableInlineCompletion": false,
+  "IDX.aI.enableCodebaseIndexing": true
 }
