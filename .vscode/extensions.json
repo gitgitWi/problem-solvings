@@ -1,9 +1,11 @@
 {
   "recommendations": [
-    "wallabyjs.quokka-vscode",
     "biomejs.biome",
     "oven.bun-vscode",
     "streetsidesoftware.code-spell-checker",
-    "igorsbitnev.error-gutters"
+    "vitest.explorer",
+    "mhutchie.git-graph",
+    "eamodio.gitlens",
+    "vscode-icons-team.vscode-icons"
   ]
 }
