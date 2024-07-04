@@ -5,6 +5,8 @@ describe("131701. 연속 부분 수열 합의 개수", () => {
    * @see {@link https://school.programmers.co.kr/learn/courses/30/lessons/131701}
    * @param {number[]} elements
    * @returns {number}
+   *
+   * @todo 효율성 개선 - 시간이 생각보다 많이 걸림
    */
   function solution(elements) {
     const arr = elements.concat(elements);
