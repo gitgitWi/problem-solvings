@@ -7,8 +7,16 @@ describe("12914. 멀리 뛰기", () => {
    * @returns {number}
    */
   function solution(n) {
-    let answer = 0;
-    return answer;
+    const steps = [0, 1, 2];
+    if (n <= 2) return steps[n];
+
+    let idx = 3;
+    while (idx <= n) {
+      steps[idx] = (steps[idx - 1] + steps[idx - 2]) % 1234567;
+      idx++;
+    }
+
+    return steps[n];
   }
 
   test("TC1", () => {
