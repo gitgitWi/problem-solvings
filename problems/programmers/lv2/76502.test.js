@@ -17,17 +17,17 @@ describe("76502. 괄호 회전하기", () => {
      * @returns {boolean}
      */
     const isValid = (startIdx) => {
-      const target = s.concat(s.slice(0, startIdx));
-      const lastIndex = target.length;
+      const target = s.slice(startIdx).concat(s.slice(0, startIdx));
 
       const stack = [];
-      for (let i = startIdx; i < lastIndex; i++) {
+      for (let i = 0; i < size; i++) {
         const cur = target[i];
-        if (cur === paren1.left || cur === paren2.left || cur === paren3.left) {
-          stack.push(cur);
-          continue;
-        }
         switch (cur) {
+          case paren1.left:
+          case paren2.left:
+          case paren3.left:
+            stack.push(cur);
+            continue;
           case paren1.right: {
             const prev = stack.pop();
             if (!prev || prev !== paren1.left) return false;
@@ -47,15 +47,13 @@ describe("76502. 괄호 회전하기", () => {
             continue;
         }
       }
-      return true;
+      return stack.length === 0;
     };
 
-    let rotates = 0;
-    for (let start = 0; start < size; start++) {
-      if (isValid(start)) rotates++;
-    }
-
-    return rotates;
+    return Array.from({ length: size }, (_, i) => i).reduce(
+      (rotates, idx) => rotates + (isValid(idx) ? +1 : 0),
+      0,
+    );
   }
 
   test("TC1", () => {
@@ -72,5 +70,9 @@ describe("76502. 괄호 회전하기", () => {
 
   test("TC4", () => {
     expect(solution("}}}")).toEqual(0);
+  });
+
+  test("TC5", () => {
+    expect(solution("(){{")).toEqual(0);
   });
 });
