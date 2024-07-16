@@ -33,26 +33,29 @@ describe("17677. 뉴스 클러스터링", () => {
     const [smaller, bigger] =
       pairs1.length < pairs2.length ? [pairs1, pairs2] : [pairs2, pairs1];
 
-    /**
-     * @param {string[][]} pairs
-     */
-    const createUnion = ([smaller, bigger]) => {
+    const createUnion = () => {
       const biggerSet = new Set(bigger);
       const notInBigger = smaller.filter((val) => !biggerSet.has(val));
       return bigger.concat(notInBigger);
     };
 
-    /**
-     * @param {string[][]} pairs
-     */
-    const createIntersect = ([smaller, bigger]) => {
-      const biggerSet = new Set(bigger);
-      const intersect = smaller.filter((val) => biggerSet.has(val));
-      return intersect;
+    const createIntersect = () => {
+      const biggerMap = bigger.reduce(
+        (acc, val) => acc.set(val, (acc.has(val) ? acc.get(val) : 0) + 1),
+        new Map([]),
+      );
+
+      const _intersect = smaller.filter((val) => {
+        const num = biggerMap.get(val);
+        if (!num) return false;
+        biggerMap.set(val, num - 1);
+        return true;
+      });
+      return _intersect;
     };
 
-    const intersect = createIntersect([smaller, bigger]);
-    const union = createUnion([smaller, bigger]);
+    const intersect = createIntersect();
+    const union = createUnion();
 
     return (
       Math.floor((intersect.length / union.length) * 65536) ||
