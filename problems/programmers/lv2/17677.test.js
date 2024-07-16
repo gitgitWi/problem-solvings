@@ -37,13 +37,8 @@ describe("17677. 뉴스 클러스터링", () => {
      * @param {string[][]} pairs
      */
     const createUnion = ([smaller, bigger]) => {
-      const notInBigger = [];
-
       const biggerSet = new Set(bigger);
-      smaller.forEach((val) => {
-        !biggerSet.has(val) && notInBigger.push(val);
-      });
-
+      const notInBigger = smaller.filter((val) => !biggerSet.has(val));
       return bigger.concat(notInBigger);
     };
 
@@ -51,19 +46,13 @@ describe("17677. 뉴스 클러스터링", () => {
      * @param {string[][]} pairs
      */
     const createIntersect = ([smaller, bigger]) => {
-      /** @type {string[]} */
-      const intersect = [];
-
       const biggerSet = new Set(bigger);
-      smaller.forEach((val) => {
-        biggerSet.has(val) && intersect.push(val);
-      });
-
+      const intersect = smaller.filter((val) => biggerSet.has(val));
       return intersect;
     };
 
-    const intersect = createIntersect([pairs1, pairs2]);
-    const union = createUnion([pairs1, pairs2]);
+    const intersect = createIntersect([smaller, bigger]);
+    const union = createUnion([smaller, bigger]);
 
     return (
       Math.floor((intersect.length / union.length) * 65536) ||
